@@ -24,5 +24,5 @@ ENV PORT 8080
 
 # start PocketBase
 EXPOSE 8080
-CMD ["/pb/pocketbase", "superuser", "upsert","pieper.balve@googlemail.com","fVKCcZBUMnxorVbxRq", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
-#CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
+#CMD ["/pb/pocketbase", "superuser", "upsert","pieper.balve@googlemail.com","pwd", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
+CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
