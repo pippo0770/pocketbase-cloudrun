@@ -22,7 +22,15 @@ RUN unzip /tmp/pb.zip -d /pb/
 ENV HOST 0.0.0.0
 ENV PORT 8080
 
-# start PocketBase
+# Start-Skript erstellen
+RUN echo '#!/bin/sh' > /pb/start.sh && \
+    echo '/pb/pocketbase superuser upsert ${PB_ADMIN_EMAIL} ${PB_ADMIN_PASSWORD}' >> /pb/start.sh && \
+    echo 'exec /pb/pocketbase serve --http="0.0.0.0:8080" --dir=/cloud/storage/pb_data --publicDir=/cloud/storage/pb_public --hooksDir=/cloud/storage/pb_hooks' >> /pb/start.sh && \
+    chmod +x /pb/start.sh
+
 EXPOSE 8080
-#CMD ["/pb/pocketbase", "superuser", "upsert","pieper.balve@googlemail.com","pwd", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
-CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
+
+ENTRYPOINT ["/pb/start.sh"]
+
+#EXPOSE 8080
+#CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
