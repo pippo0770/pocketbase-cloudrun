@@ -31,6 +31,3 @@ RUN echo '#!/bin/sh' > /pb/start.sh && \
 EXPOSE 8080
 
 ENTRYPOINT ["/pb/start.sh"]
-
-#EXPOSE 8080
-#CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080", "--dir=/cloud/storage/pb_data", "--publicDir=/cloud/storage/pb_public", "--hooksDir=/cloud/storage/pb_hooks"]
